@@ -22,3 +22,5 @@ Order Handling: Manage customer orders. Each API endpoint will interact with the
 Basics of database schema design :-In MongoDB, schema design is the process of defining the structure and relationships of the data stored in the database.
 
 Role of authentication in web applications :- This is the process of verifying the identity of a user before allowing them access to specific resources. In our e-commerce application, users will need to authenticate themselves before making purchases or accessing sensitive information.
+
+Added A Login Page
