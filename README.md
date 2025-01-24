@@ -93,3 +93,8 @@ This project is all about creating a fully functional e-commerce website where u
     * Compare the hashed password with the stored hashed password in the database.
     * Authentication is successful if they match.
 
+
+### Milestone 8: Product Card & Homepage Layout
+
+* Created a reusable Card Component with props for product details.
+* Designed the Homepage layout using a grid or flexbox to display multiple product cards.
