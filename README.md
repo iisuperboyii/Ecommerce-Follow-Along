@@ -82,3 +82,14 @@ This project is all about creating a fully functional e-commerce website where u
 
 2. **Store User Data:**
     * Save user data (e.g., name, email) in the database, ensuring the password remains encrypted.
+
+
+### Milestone 7: Login Endpoint
+
+1. **Accept User Credentials:** Receive email/username and password from the user.
+2. **Retrieve User:** Query the database for the user matching the provided credentials.
+3. **Password Validation:**
+    * Hash the entered password with `bcrypt`.
+    * Compare the hashed password with the stored hashed password in the database.
+    * Authentication is successful if they match.
+
