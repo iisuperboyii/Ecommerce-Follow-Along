@@ -2,12 +2,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { userModel } = require('./model/user.model');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const cors = require('cors');
 require('dotenv').config(); // Load environment variables
 
+
 const app = express();
-const PORT = process.env.PORT || 8000; // Use environment variable for port
+
 
 app.use(express.json());
+app.use(cors());
 
 let connection = mongoose.connect(process.env.MONGODB_URI); // Use environment variable for MongoDB URI
 
@@ -87,7 +91,31 @@ app.post("/signup", async (req, res) => {
     }
 });
 
-app.listen(PORT, async () => {
+app.post("/login",async(req,res)=>{
+    const {email,password}=req.body;
+
+    try {
+        let user = await userModel.find({email});
+
+        if(user.length>0){
+            let hashedPassword=user[0].password;
+            bcrypt.compare(password,hashedPassword,function(err,result){
+                if(result){
+                    let token = jwt.sign({"user ID":user[0]._id},process.env.SECRET_KEY)
+                    res.send({"msg":"Login Successfull","token":token})
+                }else{
+                    res.send({"msg":"Invalid Password"})
+                }
+            })
+        }else{
+            res.send({"msg":"Invalid Email"})
+        }
+    } catch (error) {
+        res.json({"Message":"Something went wrong!"})
+    }
+})
+
+app.listen(process.env.PORT, async () => {
     try {
         await connection;
         console.log("Successfully connected to MongoDB");
@@ -95,5 +123,5 @@ app.listen(PORT, async () => {
         console.error("MongoDB connection error:", error); // Improved error logging
     }
 
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${process.env.PORT}`);
 });
