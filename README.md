@@ -1,28 +1,84 @@
-# Ecommerce-Follow-Along
+# Project Title:  
+**E-Commerce Website**
 
-Welcome to the Follow Along Project: Milestone 1!
+---
 
-In this mentor-led session, you will begin an exciting journey to build a full-fledged E-Commerce Application from scratch using the MERN stack (MongoDB, Express.js, React.js, and Node.js).
-This project is designed to provide hands-on experience with real-world development concepts and tools.
+## Project Overview:  
+This project is all about creating a fully functional e-commerce website where users can browse products, add them to their cart, and complete purchases securely. It’s a platform designed to simulate real-world online shopping experiences while providing a space to learn key web development skills. The project focuses on creating a user-friendly and visually appealing interface backed by a robust and scalable backend.
 
-Key features of the project
-This project will be built using MERN Stack.
-REST API Creation: Through the mentor-guided project, you will learn to build scalable APIs.
-Authentication: You will get to learn to implement secure login and registration functionalities. -Database Schema Design: You will get to explore how to create structured data models using MongoDB.
-Backend Development: As a part of the project, you will learn to set up robust server-side logic with Node.js and Express.
+---
 
-Core concepts covered
-Overview of the MERN stack :- The MERN stack is a popular set of technologies used for building full-stack web applications.The MERN stack is favored for its JavaScript-only approach, enabling developers to use a single language across the entire application (both front-end and back-end). This streamlines development and makes it easy for newbies 🐣.
+## Key Features:  
 
-REST API Structure and Endpoints :- A REST API (Representational State Transfer) is an architectural style used for building web services that allow communication between a client and a server using standard HTTP methods.In this project, you will build various API endpoints to handle tasks such as:
+- **User Authentication:**  
+  Allow users to sign up, log in, and manage their accounts securely.  
 
-User Authentication: Register and log in users.
-Product Management: Add, update, and retrieve product data.
-Order Handling: Manage customer orders. Each API endpoint will interact with the database and serve data in a structured format (typically JSON). User Authentication: Register and log in users. Product Management: Add, update, and retrieve product data. Order Handling: Manage customer orders. Each API endpoint will interact with the database and serve data in a structured format (typically JSON).
-Basics of database schema design :-In MongoDB, schema design is the process of defining the structure and relationships of the data stored in the database.
+- **Product Catalog:**  
+  Display a dynamic catalog of products with details like name, price, and description.  
 
-Role of authentication in web applications :- This is the process of verifying the identity of a user before allowing them access to specific resources. In our e-commerce application, users will need to authenticate themselves before making purchases or accessing sensitive information.
+- **Search and Filter:**  
+  Enable users to search for products and apply filters like price range or category.  
 
-Added A Login Page
-Connected MongoDB
-Used Postman 
+- **Cart System:**  
+  Let users add items to their cart, view the total, and proceed to checkout.  
+
+- **Order Management:**  
+  Users can view their order history and track ongoing orders.  
+
+- **Admin Panel:**  
+  Admins can add, edit, or delete products and manage user orders.  
+
+- **Interactive Frontend:**  
+  A responsive and engaging UI to ensure a smooth shopping experience.  
+
+- **Payment Integration:** *(Optional)*  
+  Integrate a payment gateway for secure transactions.  
+
+---
+
+## Tech Stack:  
+
+- **Frontend:** React with Vite for a fast and responsive user interface.  
+- **Backend:** Node.js with Express to handle server-side logic.  
+- **Database:** MongoDB for storing user and product data.  
+- **Authentication:** Secure user authentication using JSON Web Tokens (JWT).  
+- **Hosting:** Netlify for the frontend and Render for the backend.  
+- **API:** RESTful APIs for communication between the frontend and backend.  
+
+
+## Milestones
+
+### Milestone 1: Repository Creation
+
+* Created a GitHub repository named "Ecommerce-Follow-Along" with a README file.
+
+### Milestone 2: Initial Setup & Login Page
+
+* Pushed code to the GitHub repository.
+* Set up separate folders for frontend and backend.
+* Developed a functional Login Page for the frontend.
+
+### Milestone 3: Project Setup & Foundation
+
+* Established project structure, set up database connection, and implemented basic error handling.
+
+### Milestone 4: User Authentication & File Uploads
+
+* Implemented user registration, login, and file upload functionalities.
+* Integrated user authentication and authorization middleware.
+
+### Milestone 5: User Signup
+
+* Created the Signup page with form validation.
+
+* Implemented user signup functionality with email verification.
+
+
+### Milestone 6: Password Encryption & Data Storage
+
+1. **Encrypt Password:**
+    * Hash the user's password with `bcrypt` during signup.
+    * Store the hashed password securely in the database.
+
+2. **Store User Data:**
+    * Save user data (e.g., name, email) in the database, ensuring the password remains encrypted.

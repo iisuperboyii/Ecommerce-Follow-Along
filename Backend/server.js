@@ -1,34 +1,37 @@
-const express=require('express');
-const mongoose=require('mongoose');
+const express = require('express');
+const mongoose = require('mongoose');
 const { userModel } = require('./model/user.model');
+const bcrypt = require('bcrypt');
+require('dotenv').config(); // Load environment variables
 
-const app=express()
-const PORT=8080
+const app = express();
+const PORT = process.env.PORT || 8000; // Use environment variable for port
 
-app.use(express.json())
+app.use(express.json());
 
+let connection = mongoose.connect(process.env.MONGODB_URI); // Use environment variable for MongoDB URI
 
+app.get("/ping", (req, res) => {
+    res.send("pong");
+});
 
-let connection= mongoose.connect("mongodb+srv://aaronjomon24:aaronjomon5@aaronjomon.jvfff.mongodb.net/ecom_db")
+app.post("/create", async (req, res) => {
+    let payLoad = req.body;
 
-app.get("/ping",(req,res)=>{
-    res.send("pong")
-})
-
-app.post("/create",async(req,res)=>{
-    let payLoad=req.body;
+    const hashedPassword = await bcrypt.hash(payLoad.password, 10);
+    payLoad.password = hashedPassword; // Replace the plain password with the hashed one
 
     try {
-        let new_user= new userModel(payLoad);
+        let new_user = new userModel(payLoad);
         await new_user.save();
-        res.send({"message":"Hurray! Successfully saved the user to the database"})
-    }catch (error){
-        console.log(error);
-        res.send({"error":error})
+        res.send({ "message": "Hurray! Successfully saved the user to the database" });
+    } catch (error) {
+        console.error("Error creating user:", error); // Improved error logging
+        res.status(500).send({ "error": "Failed to create user" });
     }
 });
 
-const multer  = require('multer')
+const multer = require('multer');
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, './uploads/'); // Save files in the uploads folder
@@ -60,15 +63,37 @@ app.post('/upload', upload.single('myFile'), (req, res) => {
     }
 });
 
+app.post("/signup", async (req, res) => {
+    console.log(req.body);
+    const { name, email, password } = req.body;
+    const userPresent = await userModel.findOne({ email });
+    if (userPresent?.email) {
+        res.send("Try logging in, already exists");
+    } else {
+        try {
+            bcrypt.hash(password, 4, async function (err, hash) {
+                if (err) {
+                    console.error("Error hashing password:", err); // Improved error logging
+                    return res.status(500).send("Error during signup");
+                }
+                const user = new userModel({ name, email, password: hash });
+                await user.save();
+                res.send("Sign up successful");
+            });
+        } catch (error) {
+            console.error("Error during signup:", error); // Improved error logging
+            res.send("Something went wrong, please try again later");
+        }
+    }
+});
 
+app.listen(PORT, async () => {
+    try {
+        await connection;
+        console.log("Successfully connected to MongoDB");
+    } catch (error) {
+        console.error("MongoDB connection error:", error); // Improved error logging
+    }
 
-app.listen(PORT,async()=>{
-try{
-    await connection;
-    console.log("Successfully connected to MongoDB");
-} catch (error){
-    console.log(error);
-}
-
-    console.log(`Server is running on port ${PORT}`)
-})
+    console.log(`Server is running on port ${PORT}`);
+});
