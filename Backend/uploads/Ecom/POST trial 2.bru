@@ -1,0 +1,18 @@
+meta {
+  name: POST trial 2
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8000/product/create
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  productName: Shirt
+  productDescription: Long Sleeve
+  productPrice: 1200
+  productImage: @file(C:\Users\aaron\OneDrive\Pictures\Screenshots\aesthet\Screenshot 2024-10-22 003630.png|C:\Users\aaron\OneDrive\Pictures\Screenshots\aesthet\Screenshot 2024-10-23 022250.png)
+}
