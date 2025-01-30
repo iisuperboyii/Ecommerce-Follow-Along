@@ -4,6 +4,17 @@ const { productModel } = require('../model/product.model');
 
 let productRouter = express.Router();
 
+
+productRouter.get("/",async(req,res)=>{
+    try {
+        const products=await productModel.find();
+        res.send({"message":"Successfully fetched products",data:products});
+    } catch (error) {
+        res.send({"error-message":error})
+    }
+})
+
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, './uploads/'); 

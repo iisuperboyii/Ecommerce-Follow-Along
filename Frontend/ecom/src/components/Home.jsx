@@ -1,8 +1,23 @@
 import { useNavigate } from "react-router-dom";
-import productData from "./data.json";
+// import productData from "./data.json";
 import Cart from "./Cart";
+import { useEffect, useState } from "react";
+
 
 function Home() {
+    let[productData,setProductData]=useState([]);
+
+    useEffect(()=>{
+        fetch("http://localhost:8000/product").then((res)=>{
+            return res.json();
+        }).then((res)=>{
+            console.log(res)
+            setProductData(res.data)
+        }).catch((err)=>{
+            console.log(err);
+        })
+    },[])
+
     const navigate = useNavigate();
 
     const navBarStyle = {

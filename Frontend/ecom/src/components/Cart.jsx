@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 
 const Cart = ({ product }) => {
+
+    //let imgPath=`./././././Backend${product.productImage}`
+
+
     const cartStyle = {
         border: "1px solid #ddd",
         borderRadius: "8px",
@@ -60,10 +64,10 @@ const Cart = ({ product }) => {
 
     return (
         <div className="cart" style={cartStyle}>
-            <img src={product.imageUrl} alt={product.name} style={imgStyle} />
-            <h3 style={h3Style}>{product.name}</h3>
-            <p style={pStyle}>{product.description}</p>
-            <p style={priceStyle}>₹{product.price}</p>
+            <img src={product.productImage} alt={product.productName} style={imgStyle} />
+            <h3 style={h3Style}>{product.productName}</h3>
+            <p style={pStyle}>{product.productDescription}</p>
+            <p style={priceStyle}>₹{product.productPrice}</p>
             <div style={buttonContainerStyle}>
                 <button style={buttonStyle}>Add to Cart</button>
                 <button style={buttonStyle}>Buy Now</button>
@@ -75,10 +79,10 @@ const Cart = ({ product }) => {
 
 Cart.propTypes = {
     product: PropTypes.shape({
-        imageUrl: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        description: PropTypes.string,
-        price: PropTypes.number.isRequired,
+        productImage: PropTypes.string.isRequired,        
+        productName: PropTypes.string.isRequired,
+        productDescription: PropTypes.string,
+        productPrice: PropTypes.number.isRequired,
     }).isRequired,
 };
 
